@@ -1,0 +1,65 @@
+body {
+    min-height: 100%;
+}
+
+#menu{
+	background-color: #6ad97d;
+	position: relative;
+}
+#rodape{
+	background-color: #6ad97d;
+	text-align: center;
+	bottom: 0px;
+    width:100%;
+    position: relative;
+    border: 20px;
+
+}
+#rodape_bug{
+	background-color: #6ad97d;
+	text-align: center;
+	bottom: 0px;
+    width:100%;
+    position: fixed;
+}
+
+#grid_cadastro{
+	padding: 10px;
+
+}
+#form_cadastro a {
+ color: inherit; 
+} 
+#form_cadastro a:hover { 
+	color: inherit; 
+} 
+#grid_estatistica{
+	padding: 20px;
+}
+
+
+#foto{
+	height: 300px;
+}
+
+
+#gridNome{
+	height: 100%;
+
+}
+
+#nome,#turma {
+ 	text-align: left;
+ 	height: 50%;
+ 	width: 100%;
+ 	font-size: 100px;
+}
+#divPergunta, #divImagem{
+	text-align: center;
+
+}
+
+#avatarPergunta{
+	height: 250px;
+	width:250px;
+}
