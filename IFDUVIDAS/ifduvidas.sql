@@ -3,7 +3,7 @@
 
 
 CREATE TABLE Usuarios (
-nome varchar(30),
+Nome varchar(30),
 senha varchar(30),
 email varchar(50),
 num_matricula int (10),

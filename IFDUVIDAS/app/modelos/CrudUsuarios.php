@@ -19,7 +19,7 @@ class CrudUsuarios
     public function getUsuarios()
     {
 
-        $sql = "select * from Usuarios order by nome ";
+        $sql = "select * from Usuarios order by Nome ";
         $resultado = $this->conexao->query($sql);
         $listaUsuarios = [];
 
@@ -74,7 +74,7 @@ class CrudUsuarios
     public function updateUsuario(Usuario $usuario)
     {
 
-        $consulta = "UPDATE Usuarios SET nome = '{$usuario->getNome()}', senha = '{$usuario->getSenha()}', email = '{$usuario->getEmail()}', num_matricula = '{$usuario->getNumMatricula()}' , data_nasc = '{$usuario->getDataNasc()}', turma = '{$usuario->getTurma()}', RG = '{$usuario->getRG()}', foto_perf = '{$usuario->getFotoPerf()}', 
+        $consulta = "UPDATE Usuarios SET Nome = '{$usuario->getNome()}', senha = '{$usuario->getSenha()}', email = '{$usuario->getEmail()}', num_matricula = '{$usuario->getNumMatricula()}' , data_nasc = '{$usuario->getDataNasc()}', turma = '{$usuario->getTurma()}', RG = '{$usuario->getRG()}', foto_perf = '{$usuario->getFotoPerf()}', 
                                         login = '{$usuario->getLogin()}', id_usuario = '{$usuario->getIdUsuario()}', valido = '{$usuario->getValido()}', cod_tip = '{$usuario->getCodTip()}'
  WHERE id={$usuario->getId()}";
 
@@ -100,9 +100,9 @@ class CrudUsuarios
         }
     }
 
-    public function login($login, $senha)
+    public function login($email, $senha)
     {
-        $sql = "SELECT * FROM Usuarios WHERE login = '$login' and senha='$senha' ";
+        $sql = "SELECT * FROM Usuarios WHERE email = '$email' and senha='$senha' ";
         $resultado = $this->conexao->query($sql);
         if ($resultado->rowCount() > 0) {
             $usuario = $resultado->fetch(PDO::FETCH_ASSOC);

@@ -11,7 +11,7 @@ class BDConection
     const HOST = "localhost";
     const NOMEBANCO = "IFDUVIDAS";
     const USUARIO = 'root';
-    const SENHA = 'root';
+    const SENHA = null;
     //!!!Substitua daqui para baixo
     public static $conexao = null;
 

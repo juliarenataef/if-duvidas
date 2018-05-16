@@ -1,6 +1,7 @@
 <?php
 session_start();
 require_once '../modelos/CrudUsuarios.php';
+require '../visualizacao/head.php';
 
 
 if (isset($_GET['acao'])){
@@ -13,25 +14,23 @@ switch ($acao) {
 
     case 'index':
 
-        $crud = new CrudUsuarios();
-        $usuarios = $crud->getUsuarios();
 
-//            include '../views/usuarios/cabecalho.php';
-        include '../visualizacao/Usuarios/index.php';
-//            include '../views/usuarios/rodape.php';
+        include '../visualizacao/head.php';
+        include '../visualizacao/index.php';
+        include '../visualizacao/footer.php';
         break;
 
 
     case 'inserir';
         if (!isset($_POST['gravar'])) { // se ainda nao tiver preenchido o form
-//                include '../views/usuarios/cabecalho.php';
-            include '../visualizacao/Usuarios/telaCadastrar.html';
-//                include '../views/usuarios/rodape.php';
+            include '../visualizacao/head.php';
+            include '../visualizacao/cadastro.php';
+            include '../visualizacao/footer.php';
         } else {
 
             // depois de preencher o formulario
 
-            $nome = $_POST['Nome'];
+            $Nome = $_POST['nome'];
             $senha = $_POST['senha'];
             $email = $_POST['email'];
             $num_matricula = $_POST['num_matricula'];
@@ -49,24 +48,24 @@ switch ($acao) {
             $crud = new CrudUsuarios();
             $crud->insertUsuario($novoUsuario);
 
-            header('Location: usuario.php');
+            header('Location: ../visualizacao/usuario.php');
         }
         break;
 
 
     case 'login':
         if (!isset($_POST['entrar'])) { //primeiro clique - exibir formulario
-            include '../visualizacao/Usuarios/telaLogin.html';
+            include '../visualizacao/login.php';
         } else { //depois de clicar em entrar
-            $login = $_POST['login'];
+            $email = $_POST['email'];
             $senha = $_POST['senha'];
             $crud = new CrudUsuarios();
-            $usuario = $crud->login($login, $senha);
+            $usuario = $crud->login($email, $senha);
             var_dump($usuario);
             if ($usuario) { //se deu certo o login
                 $_SESSION['id_usuario'] = $usuario->getIdUsuario();
                 $_SESSION['Nome'] = $usuario->getNome();
-                $_SESSION['login'] = $usuario->getLogin();
+                $_SESSION['email'] = $usuario->getEmail();
                 header('location: Usuarios.php');
             } else {
 

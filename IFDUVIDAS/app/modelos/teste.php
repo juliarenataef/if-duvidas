@@ -6,7 +6,7 @@
 
 	
 
-	$Nome = 'JOÃO DO TESTE';
+	$Nome = 'JOÃO DO oi';
 	$senha = 'teste';
 	$email = 'teste@gmail.com';
 	$num_matricula = "123456789";
