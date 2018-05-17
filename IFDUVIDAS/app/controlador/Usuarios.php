@@ -69,7 +69,7 @@ switch ($acao) {
                 header('location: Usuarios.php');
             } else {
 
-                header('location: Usuarios.php?erro=1');
+                echo "dados incorretos";
             }
 
 

@@ -102,7 +102,7 @@ class CrudUsuarios
 
     public function login($email, $senha)
     {
-        $sql = "SELECT * FROM Usuarios WHERE email = '$email' and senha='$senha' ";
+        $sql = "SELECT * FROM usuarios WHERE email = '$email' and senha='$senha' ";
         $resultado = $this->conexao->query($sql);
         if ($resultado->rowCount() > 0) {
             $usuario = $resultado->fetch(PDO::FETCH_ASSOC);
