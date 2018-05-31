@@ -70,6 +70,7 @@ switch ($acao) {
                 $_SESSION['id_usuario'] = $usuario->getIdUsuario();
                 $_SESSION['Nome'] = $usuario->getNome();
                 $_SESSION['email'] = $usuario->getEmail();
+                $_SESSION['status'] = true;
                 header('location: Usuarios.php');
             } else {
 
