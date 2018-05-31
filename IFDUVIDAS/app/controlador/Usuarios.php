@@ -1,5 +1,9 @@
 <?php
-session_start();
+
+    if(!isset($_SESSION)) 
+    { 
+        session_start(); 
+    }
 require_once '../modelos/CrudUsuarios.php';
 require '../visualizacao/head.php';
 
@@ -77,8 +81,8 @@ switch ($acao) {
 
         break;
 
-    case 'logout':
-        session_destroy();
-        header('location: Usuarios.php');
-        break;
+   // case 'logout':
+     //   session_destroy();
+       // header('location: Usuarios.php');
+        //break;
 }

@@ -1,4 +1,10 @@
-<?php echo '
+<?php
+  if(!isset($_SESSION)) 
+    { 
+        session_start(); 
+    }
+?>
+
   <div class="ui menu" id="menu">
     <a href="index.php" class="item">
       Página Inicial
@@ -49,19 +55,66 @@
           <i class="search link icon"></i>
         </div>
       </div>
-      <a class="ui item" href="../visualizacao/login.php">
+    <?php
+  if(!isset($_SESSION['id_usuario'])) 
+    { 
+         
+    echo "foi 1 ";
+  
+  
+  if ($_SESSION['id_usuario'] == ''){
+      
+    ?>
+    <a class="ui item" href="../visualizacao/login.php">
         Login
       </a>
-      <a class="ui item" href="../visualizacao/cadastro.php">
+      <?php
+    }
+    ?>
+     <?php
+    if ($_SESSION['id_usuario'] == ''){
+      ?>
+    <a class="ui item" href="../visualizacao/cadastro.php">
+        Cadastrar
+      </a>  
+      <?php
+    }
+  }else{ 
+    echo "foi 2";
+    ?>
+
+    <a class="ui item" href="../visualizacao/login.php">
+        Login
+      </a>
+   
+ 
+    
+    <a class="ui item" href="../visualizacao/cadastro.php">
         Cadastrar
       </a>  
       <a class="item" href="../visualizacao/usuario.php">
           <i class="setting icon"></i>
           Perfil
        </a>
+<?php
+  }
+?>
+   <?php 
+    if(!isset($_SESSION)) {
+   
+  if ($_SESSION['id_usuario'] != ''){
+     
+  ?>
+   <a class="ui butoon" href="../controlador/logout.php">
+          logout
+       </a>
+<?php
+  }
+}
+?>
+
  
 
     </div>
 
   </div>
-'?>
