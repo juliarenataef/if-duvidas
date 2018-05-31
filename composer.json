@@ -1,0 +1,13 @@
+{
+    "name": "miguelsenne/if-duvidas",
+    "type": "project",
+    "license": "MIT",
+    "authors": [
+        {
+            "name": "Miguel Senne",
+            "email": "miguelsennejunior@gmail.com"
+        }
+    ],
+    "minimum-stability": "dev",
+    "require": {}
+}
