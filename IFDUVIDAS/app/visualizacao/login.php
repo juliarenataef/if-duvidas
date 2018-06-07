@@ -20,7 +20,7 @@
           <label>Senha</label>
           <input type="text" name="senha" placeholder="senha" id="senha">
         </div>
-   <button class="ui button" type="submit" value="entrar" name="entrar" id="entrar">entrar</button>
+   <button class="ui button" type="submit" value="entrar" name="entrar" id="entrar">Entrar</button>
       </form>
 
     </div>

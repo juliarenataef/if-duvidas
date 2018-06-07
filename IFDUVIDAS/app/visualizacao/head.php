@@ -1,4 +1,4 @@
-<?php echo '
+
 <title>IF Duvidas</title>
 <meta charset="utf-8">
 <link rel="stylesheet" type="text/css" href="../visualizacao/semantic/semantic.css">
@@ -9,5 +9,3 @@
 <script type="text/javascript" src="../visualizacao/script.js"></script>
 <link rel="stylesheet" type="text/css" href="../visualizacao/css.css">
 
-';
-?>

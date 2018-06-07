@@ -1,4 +1,4 @@
-<?php  echo '
+
 
 <div class="ui bottom attached header" id="rodape">
     <div class="ui list horizontal alligned">
@@ -29,4 +29,3 @@
     </div>
   </div>
  
-'?>

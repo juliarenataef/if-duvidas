@@ -25,7 +25,7 @@ switch ($acao) {
         break;
 
 
-    case 'inserir';
+    case 'cadastrar';
         if (!isset($_POST['gravar'])) { // se ainda nao tiver preenchido o form
             include '../visualizacao/head.php';
             include '../visualizacao/cadastro.php';
@@ -52,7 +52,7 @@ switch ($acao) {
             $crud = new CrudUsuarios();
             $crud->insertUsuario($novoUsuario);
 
-            header('Location: ../visualizacao/usuario.php');
+            header('location: Usuarios.php');
         }
         break;
 
@@ -81,8 +81,23 @@ switch ($acao) {
 
         break;
 
-   // case 'logout':
-     //   session_destroy();
-       // header('location: Usuarios.php');
-        //break;
-}
+    case 'logout':
+        session_destroy();
+       header('location: Usuarios.php');
+        break;
+
+        case 'paginaDoUsuario':
+        header('location:../visualizacao/usuario.php');
+                $_SESSION['id_usuario'] = $usuario->getIdUsuario();
+                $_SESSION['Nome'] = $usuario->getNome();
+                $_SESSION['email'] = $usuario->getEmail();
+            break;
+            }
+            
+            
+
+
+
+
+
+
