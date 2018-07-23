@@ -1,10 +1,5 @@
 <?php
-/**
- * Created by PhpStorm.
- * User: aluno
- * Date: 02/05/18
- * Time: 14:45
- */
+
 
 class BDConection
 {
@@ -12,7 +7,6 @@ class BDConection
     const NOMEBANCO = "IFDUVIDAS";
     const USUARIO = 'root';
     const SENHA = null;
-    //!!!Substitua daqui para baixo
     public static $conexao = null;
 
     public static function getConexao()

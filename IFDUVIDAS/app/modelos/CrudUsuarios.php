@@ -41,14 +41,12 @@ class CrudUsuarios
         $numMatricula = $usuario->getNumMatricula();
         $dataNasc = $usuario->getDataNasc();
         $turma = $usuario->getTurma();
-        $RG = $usuario->getRG();
         $fotoPerf = $usuario->getFotoPerf();
-        $login = $usuario->getLogin();
-        $valido = $usuario->getValido();
+        $cod_tip = $usuario->getCodTip();
 
 
-        $consulta = "INSERT INTO Usuarios (Nome, senha, email, num_matricula, data_nasc, turma, RG, foto_perf, login, valido)  
-                      VALUES ('{$Nome}', '{$senha}', '{$email}', '{$numMatricula}', '{$dataNasc}', '{$turma}', '{$RG}', '{$fotoPerf}', '{$login}', '{$valido}')";
+        $consulta = "INSERT INTO Usuarios (Nome, senha, email, num_matricula, data_nasc, turma, foto_perf, cod_tip )  
+                      VALUES ('{$Nome}', '{$senha}', '{$email}', '{$numMatricula}', '{$dataNasc}', '{$turma}','{$fotoPerf}', '{$cod_tip}')";
         //echo $consulta;
         try {
             $res = $this->conexao->exec($consulta);
@@ -62,13 +60,12 @@ class CrudUsuarios
     public function getUsuario($id)
     {
 
-        $sql = "SELECT * FROM Usuarios WHERE id_usuario = $id";
+        $sql = "SELECT * FROM usuarios as usuarios, perguntas as perguntas WHERE usuarios.id_usuario = perguntas.id_usuario and perguntas.id_pergunta = $id";
         $resultado = $this->conexao->query($sql);
         $usuario = $resultado->fetch(PDO::FETCH_ASSOC);
-        $objeto = new Usuario($usuario['Nome'], $usuario['senha'], $usuario['email'], $usuario['num_matricula'], $usuario['data_nasc'], $usuario['turma'], $usuario['RG'],
-            $usuario['foto_perf'], $usuario['login'], $usuario['id_usuario'], $usuario['valido'], $usuario['cod_tip']);
+        //$objeto = new Usuario($usuario['Nome'], $usuario['senha'], $usuario['email'], $usuario['num_matricula'], $usuario['data_nasc'], $usuario['turma'], $usuario['RG'],$usuario['foto_perf'], $usuario['login'], $usuario['id_usuario'], $usuario['valido'], $usuario['cod_tip']);
 
-        return $objeto;
+        return $usuario;
     }
 
     public function updateUsuario(Usuario $usuario)
@@ -106,12 +103,30 @@ class CrudUsuarios
         $resultado = $this->conexao->query($sql);
         if ($resultado->rowCount() > 0) {
             $usuario = $resultado->fetch(PDO::FETCH_ASSOC);
-            $objeto = new Usuario($usuario['Nome'], $usuario['senha'], $usuario['email'], $usuario['num_matricula'], $usuario['data_nasc'], $usuario['turma'], $usuario['RG'],
-                $usuario['foto_perf'], $usuario['login'], $usuario['id_usuario'], $usuario['valido'], $usuario['cod_tip']);
-            return $objeto;
+            //$objeto = new Usuario($usuario['Nome'], $usuario['senha'], $usuario['email'], $usuario['num_matricula'], $usuario['data_nasc'], $usuario['turma'], $usuario['RG'],$usuario['foto_perf'], $usuario['login'], $usuario['id_usuario'], $usuario['valido'], $usuario['cod_tip']);
+            return $usuario;
         } else {
             return false;
         }
 
     }
-}
+
+    public function getFotoUsuario($id)
+    {
+$sql = "SELECT foto_perf FROM usuarios as usuarios, perguntas as perguntas WHERE usuarios.id_usuario = perguntas.id_usuario and perguntas.id_pergunta = $id";
+        $resultado = $this->conexao->query($sql);
+        $exe = $resultado->fetch(PDO::FETCH_ASSOC);
+
+
+       header("Content-Type: image/jpg");
+       echo base64_encode(stripslashes((mysqli_result($exe, 0, 'foto'))));
+
+    }
+
+};
+
+
+
+
+
+

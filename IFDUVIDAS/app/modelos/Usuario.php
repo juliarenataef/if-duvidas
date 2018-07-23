@@ -16,14 +16,13 @@ class Usuario
     private $turma;
     private $RG;
     private $foto_perf;
-    private $login;
     private $id_usuario;
     private $valido;
     private $cod_tip;
 
 
 
-    public function __construct($Nome, $senha, $email, $num_matricula, $data_nasc, $turma, $RG, $foto_perf, $login, $valido, $id_usuario = null)
+    public function __construct($Nome, $senha, $email, $num_matricula, $data_nasc, $turma, $foto_perf, $cod_tip  )
     {
 
         $this->Nome = $Nome;
@@ -34,9 +33,7 @@ class Usuario
         $this->turma = $turma;
         $this->RG = $RG;
         $this->foto_perf = $foto_perf;
-        $this->login = $login;
-        $this->id_usuario = $id_usuario;
-        $this->valido = $valido;
+        $this->cod_tip = $cod_tip;
 
     }
 

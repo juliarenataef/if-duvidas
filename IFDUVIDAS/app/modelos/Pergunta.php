@@ -5,20 +5,23 @@ class Pergunta
 	private $data;
 	private $descricao_pergunta;
 	private $titulo;
-	private $disciplina;
+	private $materia;
+    private $curso;
+    private $status;
 	private $id_pergunta;
 	private $id_usuario;
 
 
-    public function __construct($hora, $data, $descricao_pergunta, $titulo, $disciplina, $id_pergunta = null)
+    public function __construct($hora, $data, $descricao_pergunta, $titulo, $materia, $curso, $id_usuario = null)
     {
 
         $this->hora = $hora;
         $this->data = $data;
         $this->descricao_pergunta = $descricao_pergunta;
         $this->titulo = $titulo;
-        $this->disciplina = $disciplina;
-        $this->id_pergunta = $id_pergunta;
+        $this->materia = $materia;
+        $this->curso = $curso;
+        $this->id_usuario = $id_usuario;
     }
 
         public function getHora()
@@ -85,17 +88,43 @@ class Pergunta
     /**
      * @return mixed
      */
-    public function getDisciplina()
+    public function getMateria()
     {
-        return $this->disciplina;
+        return $this->materia;
     }
 
     /**
      * @param mixed $data_nasc
      */
-    public function setDisciplina($disciplina)
+    public function setMateria($materia)
     {
-        $this->disciplina = $disciplina;
+        $this->materia = $materia;
+    }
+
+        /**
+     * @return mixed
+     */
+    public function getCurso()
+    {
+        return $this->curso;
+    }
+
+    /**
+     * @param mixed $data_nasc
+     */
+    public function setCurso($curso)
+    {
+        $this->curso = $curso;
+    }
+
+    public function getStatus()
+    {
+        return $this->status;
+    }
+    
+    public function setStatus($status)
+    {
+        return $this->status = $status;
     }
 
  public function getIdUsuario()

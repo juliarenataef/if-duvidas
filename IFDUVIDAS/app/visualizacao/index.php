@@ -8,11 +8,11 @@
 
 <?php include'menu.php' ?>
 
-  <div class="ui grid">
-    <div class="two wide column"></div>
-    <div class="twelve wide column" id="imagem"><img class="ui fluid image" src="../visualizacao/media/img.jpg"></div>
-    <div class="two wide column"></div>
-  </div>
+
+
+
+    <img id="imagem_index" src="../visualizacao/media/index.png">
+
 
   <div class="ui grid" id="grid_estatistica">
     <div class="four wide column"></div>
