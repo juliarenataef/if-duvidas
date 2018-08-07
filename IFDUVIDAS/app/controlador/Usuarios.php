@@ -4,11 +4,12 @@
     { 
         session_start(); 
     }
-require_once '../modelos/CrudUsuarios.php';
-require_once '../modelos/CrudPerguntas.php';
-require_once '../modelos/CrudComentarios.php';
-require_once '../modelos/CrudRespostas.php';
-require_once '../modelos/BDConection.php';
+
+require_once (realpath(dirname(__FILE__) . '/../modelos/CrudUsuarios.php'));
+require_once (realpath(dirname(__FILE__) .  '/../modelos/CrudPerguntas.php'));
+require_once (realpath(dirname(__FILE__) .  '/../modelos/CrudComentarios.php'));
+require_once (realpath(dirname(__FILE__) .  '/../modelos/crudRespostas.php'));
+require_once (realpath(dirname(__FILE__) .  '/../modelos/BDConection.php'));
 require '../visualizacao/head.php';
 
 

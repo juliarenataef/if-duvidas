@@ -13,7 +13,9 @@
 		<div class="one wide column"></div>
 		<div class="three wide column" id="divImagem">
 
-    <img src="gera.php?id=<?=$id?>">
+    <?php 
+      echo '<img src="data:image/jpeg;base64,' . $usuario['foto_perf'] . '" />';
+     ?>
 
     <h4><?=$usuario['Nome']?></h4>
 	</div>
