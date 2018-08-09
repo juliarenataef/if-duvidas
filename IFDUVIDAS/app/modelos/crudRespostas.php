@@ -12,11 +12,10 @@ class crudRespostas
         $this->conexao = BDConection::getConexao();
     }
 
-    public function getRespostas($id)
+    public function getRespostas($id_pergunta)
     {
-        $sql = "SELECT * from perguntas as p, prof_resposta as r, usuarios as u WHERE p.id_pergunta=r.id_pergunta and p.id_pergunta=$id and u.id_usuario=r.id_usuario order by data_resposta";
+        $sql = "SELECT * from perguntas as p, prof_resposta as r, usuarios as u WHERE p.id_pergunta=r.id_pergunta and p.id_pergunta=$id_pergunta and u.id_usuario=r.id_usuario order by data_resposta";
         $resultado = $this->conexao->query($sql);
-        $listarespostas = [];
 
         $respostas = $resultado->fetchAll(PDO::FETCH_ASSOC);
         return $respostas;
@@ -43,15 +42,13 @@ class crudRespostas
 
     }
 
-        public function getResposta($id_resposta)
+    public function getRespostasProf($id_usuario)
     {
-
-        $sql = "SELECT * FROM prof_resposta WHERE id_resposta = $id_resposta";
+        $sql = "SELECT * from perguntas as p, prof_resposta as r where p.id_pergunta=r.id_pergunta and r.id_usuario = $id_usuario";
         $resultado = $this->conexao->query($sql);
-        $resposta = $resultado->fetch(PDO::FETCH_ASSOC);
-		$objeto = new resposta($resposta['data_resposta'], $resposta['texto_resposta'], $resposta['id_resposta'], $resposta['id_pergunta'], $resposta['id_usuario']);
 
-        return $objeto;
+        $respostas = $resultado->fetchAll(PDO::FETCH_ASSOC);
+        return $respostas;
     }
 
     public function updateResposta(resposta $resposta)

@@ -51,7 +51,7 @@ function recarregarCurtida() {
     </a>
     <div class="content">
 
-    <a href="../controlador/Usuarios.php?acao=paginaDoUsuario&id_usuario=<?=$comentario['id_usuario']?>"  class="author"><?=$comentario['Nome']?></a></a>
+    <a href="../controlador/Usuarios.php?acao=paginaDoUsuario&id_usuario=<?=$comentario['id_usuario']?>&cod_tip=<?=$comentario['cod_tip']?>"  class="author"><?=$comentario['Nome']?></a></a>
       
 
       
@@ -97,7 +97,7 @@ function recarregarCurtida() {
       
     </a>
     <div class="content">
-      <a href="../controlador/Usuarios.php?acao=paginaDoUsuario&id_usuario=<?=$resposta['id_usuario']?>"  class="author"><?=$resposta['Nome']?></a></a>
+      <a href="../controlador/Usuarios.php?acao=paginaDoUsuario&id_usuario=<?=$resposta['id_usuario']?>&cod_tip=<?=$resposta['cod_tip']?>"  class="author"><?=$resposta['Nome']?></a></a>
       <div class="metadata">
         <div class="date"><?=$resposta['data_resposta']?></div>
       </div>

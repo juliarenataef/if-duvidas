@@ -1,7 +1,3 @@
-<?php 
-session_start();
- ?>
-
 <!DOCTYPE html>
 <html>
 <head>
@@ -28,9 +24,17 @@ session_start();
 				<img id="imagem_usuario" src="http://www.zastavki.com/pictures/640x480/2015/Girls_Smiling_beautiful_girl__photo_George_Chernyad_ev_111193_29.jpg">
 			</div>
 			<div class="four wide column" id="sobre_usuario" >
-					<h2>Julia Renata</h2>
-					<h3>3info2</h3>
-					<h3>Perguntas feitas: 23</h3>
+					<h2> <?=$usuario['Nome']?> </h2>
+
+					<?php if ($cod_tip == '5'){ ?>
+						<h3> <?=$usuario['turma']?> </h3>
+						<h3>Perguntas feitas: <?=$numDePergutas['numeroDePerguntas']?></h3>
+					<?php }; ?>
+
+					<?php if ($cod_tip == '4'){ ?>
+						
+					<?php }; ?>
+
 				</div>
 			</div>
 
@@ -46,18 +50,43 @@ session_start();
    
    	<div class="ui grid" id="conteudo">
    			   	
-	<div class="ui horizontal section divider">Ultimas Perguntas</div>
+	
+        
+       <?php if ($cod_tip == '5') { ?>
+
+       	<div class="ui horizontal section divider">Perguntas feitas por <?=$usuario['Nome']?></div>
       <div class="ui vertically divided grid">
-        <div class="row">
+
+	<?php foreach ($perguntas as $pergunta) { ?>
+		
+	<div class="row">
           <div class="sixteen wide column">
-          	Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nam euismod turpis sit amet posuere sollicitudin. Morbi nisi massa, cursus id orci sed, mollis aliquam libero. Proin rutrum lacinia sodales. Integer in vehicula sapien. Proin consequat felis nec molestie fermentum. Vivamus tortor mi, mattis eget ultricies et, ornare eu massa. Nunc condimentum, est nec mollis ornare, mauris arcu ullamcorper lacus, id dapibus mauris risus ut risus. Sed suscipit orci ipsum, a semper lectus rhoncus eget.
+          <a href="../controlador/Usuarios.php?acao=pergunta&id_pergunta=<?=$pergunta['id_pergunta']?>" style="color: inherit; ">
+       		 <h4 class="ui header"><?=$pergunta['titulo']?></h4>
+          	<?=$pergunta['descricao_pergunta']?>
+          	</a>
           </div>
         </div>
-        <div class="row">
+
+	<?php }} ?>
+
+	       <?php if ($cod_tip == '4') { ?>
+
+       	<div class="ui horizontal section divider">Perguntas respondidas por <?=$usuario['Nome']?></div>
+      <div class="ui vertically divided grid">
+
+	<?php foreach ($respostas as $resposta) { ?>
+		
+	<div class="row">
           <div class="sixteen wide column">
-          	Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nam euismod turpis sit amet posuere sollicitudin. Morbi nisi massa, cursus id orci sed, mollis aliquam libero. Proin rutrum lacinia sodales. Integer in vehicula sapien. Proin consequat felis nec molestie fermentum. Vivamus tortor mi, mattis eget ultricies et, ornare eu massa. Nunc condimentum, est nec mollis ornare, mauris arcu ullamcorper lacus, id dapibus mauris risus ut risus. Sed suscipit orci ipsum, a semper lectus rhoncus eget.
+          <a href="../controlador/Usuarios.php?acao=pergunta&id_pergunta=<?=$pergunta['id_pergunta']?>" style="color: inherit; ">
+       		 <h4 class="ui header"><?=$resposta['titulo']?></h4>
+          	<?=$resposta['descricao_pergunta']?>
+          	</a>
           </div>
         </div>
+
+	<?php }} ?>
       </div>
    		
    	</div>

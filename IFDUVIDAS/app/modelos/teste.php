@@ -1,7 +1,7 @@
 <?php 
 	include "CrudUsuarios.php";
 	include "CrudPerguntas.php";
-	include "CrudRespostas.php";
+	include "crudRespostas.php";
 	include "CrudComentarios.php";
 	//include "curtida.php";
 
@@ -35,8 +35,8 @@
 
 
 	//$novoUsuario = new Usuario($Nome, $senha, $email, $num_matricula, $data_nasc, $turma, $foto_perf, $cod_tip);
-	$teste2 = new Pergunta($hora, $data, $descricao_pergunta, $titulo, $materia, $curso, $id_pergunta);
-	//$teste3 = new Resposta($data_resposta, $texto_resposta, $id_resposta);
+	//$teste2 = new Pergunta($hora, $data, $descricao_pergunta, $titulo, $materia, $curso, $id_pergunta);
+	$teste3 = new Resposta($data_resposta, $texto_resposta, $id_resposta);
 	//$teste4 = new Comentario($data_comentario, $texto_comentario, $id_comentario);
 
 
@@ -45,11 +45,11 @@
 	//$crud = new CrudUsuarios();
 	//$crud -> insertUsuario($novoUsuario);
 
-	$crud = new CrudPerguntas();
-	$crud -> getCurtidas('47');
+	//$crud = new CrudPerguntas();
+	//$crud -> getCurtidas('47');
 
-	//$crud = new CrudRespostas();
-	//$crud -> insertResposta($teste3);
+	$crud = new CrudRespostas();
+	$crud -> getRespostas('47');
 
 	//$crud = new CrudComentarios();
 	//$crud -> insertComentario($teste4);

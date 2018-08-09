@@ -85,9 +85,11 @@ switch ($acao) {
        header('location: Usuarios.php');
         break;
 
-        case 'paginaDoUsuario':
+
+    case 'paginaDoUsuario':
 
         $id_usuario = $_GET['id_usuario'];
+        $cod_tip = $_GET['cod_tip'];
 
         $crud1= new CrudUsuarios();
         $usuario = $crud1->getUsuario($id_usuario);
@@ -97,20 +99,12 @@ switch ($acao) {
 
         $perguntas = $crud->getPerguntasPorUsuario($_GET['id_usuario']);
 
+        $crud2 = new CrudRespostas();
+        $respostas = $crud2->getRespostasProf($id_usuario);
 
-        if ($usuario['cod_tip'] == '4') {
         include '../visualizacao/head.php';
-        include '../visualizacao/paginaProfessor.php';
-        }elseif ($usuario['cod_tip'] == '5') {
-        include '../visualizacao/head.php';
-        include '../visualizacao/paginaAluno.php';
-        }else{
-            echo "erro";
-        };
-
-        
-        
-                
+        include '../visualizacao/paginaUsuario.php';        
+      
             break;
 
 
@@ -171,26 +165,27 @@ switch ($acao) {
 
 
         case 'pergunta':
-            $id = $_GET['id_pergunta'];
+            $id_pergunta = $_GET['id_pergunta'];
+            $id_usuario = $_SESSION['id_usuario'];
 
             $crud = new CrudPerguntas();
-            $pergunta = $crud->getPergunta($id);
+            $pergunta = $crud->getPergunta($id_pergunta);
 
             $crud2 = new CrudUsuarios();
-            $usuario = $crud2->getUsuario($id);
-
-            $id_usuario = $usuario['id_usuario'];
+            $usuario = $crud2->getUsuario($id_usuario);
 
             $crud3 = new CrudRespostas();
-            $respostas = $crud3->getRespostas($id);
+            $respostas = $crud3->getRespostas($id_pergunta);
 
             $crud4 = new CrudComentarios();
-            $comentarios = $crud4->getComentarios($id);
+            $comentarios = $crud4->getComentarios($id_pergunta);
             
-            $numDeCurtidas = $crud->getCurtidas($id);
+            $numDeCurtidas = $crud->getCurtidas($id_pergunta);
 
-            $novaCurtida = $crud->curtir($id,$id_usuario);
-
+            if ($id_usuario != '0') {
+                $novaCurtida = $crud->curtir($id_pergunta,$id_usuario);
+            };
+            
 
             include '../visualizacao/head.php';
             include '../visualizacao/pergunta.php';
@@ -227,7 +222,7 @@ switch ($acao) {
             $usuario = $crud2->getUsuario($id);
 
             $crud3 = new CrudRespostas();
-            $respostas = $crud3->getRespostas();
+            $respostas = $crud3->getRespostas($id);
 
             $crud4 = new CrudComentarios();
             $comentarios = $crud4->getComentarios($id);
