@@ -35,18 +35,15 @@
 			<h1 align="center" class="ui header">Quanto é 2 mais 2?</h1>
 
 			<?php
-			if ($busca != null) {
-			$crud = new CrudPerguntas();
-            $pesquisas = $crud->busca($busca); 
 
-			//foreach ($pesquisass as $pesquisas):?>
+			foreach ($pesquisas as $pesquisa):?>
 
 			<div class="ui vertical segment">
-			<?php if ($pesquisas['status'] == "1") { ?>
+			<?php if ($pesquisa['status'] == "1") { ?>
 				<a class="ui green right ribbon label">Respondida</a>
 			<?php } ?>
-				<a href="../controlador/Usuarios.php?acao=pergunta&id_pergunta=<?=$pesquisas['id_pergunta']?>" style="color: inherit; "><h3><?=$pesquisas['titulo']?></h3></a>
-				<p> <?=$pesquisas['descricao_pergunta']?> </p>
+				<a href="../controlador/Usuarios.php?acao=pergunta&id_pergunta=<?=$pesquisa['id_pergunta']?>" style="color: inherit; "><h3><?=$pesquisa['titulo']?></h3></a>
+				<p> <?=$pesquisa['descricao_pergunta']?> </p>
 				</div>
 
 			<?php } ?>

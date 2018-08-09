@@ -4,6 +4,12 @@
 <head>
 <?php include'head.php' ?>
 
+<script>
+function recarregarCurtida() {
+    location.reload();
+}
+
+</script>
 </head>
 <body>
 
@@ -13,9 +19,7 @@
 		<div class="one wide column"></div>
 		<div class="three wide column" id="divImagem">
 
-    <?php 
-      echo '<img src="data:image/jpeg;base64,' . $usuario['foto_perf'] . '" />';
-     ?>
+    <img src="ggera.php?id=<?=$id?>">
 
     <h4><?=$usuario['Nome']?></h4>
 	</div>
@@ -23,11 +27,12 @@
 			<h3> <?=$pergunta['titulo']?> </h3>
 			<p> <?=$pergunta['descricao_pergunta']?> </p>
       <div class="ui labeled button" tabindex="0">
-  <div class="ui button">
-    <i class="heart icon"></i> Like
+  <div class="ui button" onclick="recarregarCurtida()">
+    <i class="heart icon"> 
+    </i> Like
   </div>
   <a class="ui basic left pointing label">
-    1,048
+    <?=$numDeCurtidas['NumeroDeCurtida'];?>
   </a>
 </div>   
     </div>
@@ -45,7 +50,11 @@
     <a class="avatar">
     </a>
     <div class="content">
-      <a class="author"><?=$comentario['Nome']?></a>
+
+    <a href="../controlador/Usuarios.php?acao=paginaDoUsuario&id_usuario=<?=$comentario['id_usuario']?>"  class="author"><?=$comentario['Nome']?></a></a>
+      
+
+      
       <div class="metadata">
         <span class="date"><?=$comentario['data_comentario']?></span>
       </div>
@@ -60,13 +69,19 @@
       if (isset($_SESSION['id_usuario']) and $_SESSION['cod_tip'] == 5) { ?>
         <form class="ui reply form" method="post" action="../controlador/Usuarios.php?acao=comentario&id_pergunta=<?=$pergunta['id_pergunta']?>">
       <input type="text" name="texto_comentario">
-      <button class="ui button" type="submit" name="enviar" >Comentar!</button> 
+      <button class="ui button"  type="submit" name="enviar" >Comentar!</button> 
   </form>
     </div>
+    
       <?php 
       }; ?>
 
-    </div>
+</div>
+</div>
+
+    
+
+    
    
 
 
@@ -82,7 +97,7 @@
       
     </a>
     <div class="content">
-      <a class="author"><?=$resposta['Nome']?></a>
+      <a href="../controlador/Usuarios.php?acao=paginaDoUsuario&id_usuario=<?=$resposta['id_usuario']?>"  class="author"><?=$resposta['Nome']?></a></a>
       <div class="metadata">
         <div class="date"><?=$resposta['data_resposta']?></div>
       </div>
@@ -95,22 +110,23 @@
       <?php } ?>
 
 
-
-
             <?php 
       if (isset($_SESSION['id_usuario']) and $_SESSION['cod_tip'] == 4) { ?>
   <form class="ui reply form" method="post" action="../controlador/Usuarios.php?acao=resposta&id_pergunta=<?=$pergunta['id_pergunta']?>">
       <input type="text" name="texto_resposta">
       <button class="ui button" type="submit" name="enviar" >Responder!</button> 
   </form>
+  </div>
+  </div>
+ </div>
       <?php 
       }; ?>
   
+</div>
+   
 
-    </div>
-    </div>
-		<div class="one wide column"></div>
-    </div>
+    <div class="one wide column"></div>
+   </div>
 
 
 

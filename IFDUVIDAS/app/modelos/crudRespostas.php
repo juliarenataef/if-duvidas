@@ -12,10 +12,11 @@ class crudRespostas
         $this->conexao = BDConection::getConexao();
     }
 
-    public function getRespostas()
+    public function getRespostas($id)
     {
-    	 $sql = "select * from prof_resposta as r, usuarios as u WHERE r.id_usuario=u.id_usuario order by data_resposta";
+        $sql = "SELECT * from perguntas as p, prof_resposta as r, usuarios as u WHERE p.id_pergunta=r.id_pergunta and p.id_pergunta=$id and u.id_usuario=r.id_usuario order by data_resposta";
         $resultado = $this->conexao->query($sql);
+        $listarespostas = [];
 
         $respostas = $resultado->fetchAll(PDO::FETCH_ASSOC);
         return $respostas;

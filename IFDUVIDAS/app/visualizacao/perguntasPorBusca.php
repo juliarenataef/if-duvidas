@@ -45,23 +45,17 @@
 			<h1 align="center" class="ui header"><?=print $busca?></h1>
 
 			<?php
-			if ($busca != null) {
-			$crud = new CrudPerguntas();
-            $pesquisas = $crud->busca($busca); 
 
-			//foreach ($pesquisass as $pesquisas):?>
+			foreach ($perguntas as $pergunta){?>
 
 			<div class="ui vertical segment">
-			<?php if ($pesquisas['status'] == "1") { ?>
+			<?php if ($pergunta['status'] == "1") { ?>
 				<a class="ui green right ribbon label">Respondida</a>
 			<?php } ?>
-				<a href="../controlador/Usuarios.php?acao=pergunta&id_pergunta=<?=$pesquisas['id_pergunta']?>" style="color: inherit; "><h3><?=$pesquisas['titulo']?></h3></a>
-				<p> <?=$pesquisas['descricao_pergunta']?> </p>
+				<a href="../controlador/Usuarios.php?acao=pergunta&id_pergunta=<?=$pergunta['id_pergunta']?>" style="color: inherit; "><h3><?=$pergunta['titulo']?></h3></a>
+				<p> <?=$pergunta['descricao_pergunta']?> </p>
 				</div>
-
-			<?php } ?>
-
-			
+			<?php }?>
 			
 
 			<div class="one wide column"></div>

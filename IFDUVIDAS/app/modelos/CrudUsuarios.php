@@ -38,15 +38,15 @@ class CrudUsuarios
         $Nome = $usuario->getNome();
         $senha = $usuario->getSenha();
         $email = $usuario->getEmail();
-        $numMatricula = $usuario->getNumMatricula();
+        //$numMatricula = $usuario->getNumMatricula();
         $dataNasc = $usuario->getDataNasc();
         $turma = $usuario->getTurma();
         $fotoPerf = $usuario->getFotoPerf();
         $cod_tip = $usuario->getCodTip();
 
 
-        $consulta = "INSERT INTO Usuarios (Nome, senha, email, num_matricula, data_nasc, turma, foto_perf, cod_tip )  
-                      VALUES ('{$Nome}', '{$senha}', '{$email}', '{$numMatricula}', '{$dataNasc}', '{$turma}','{$fotoPerf}', '{$cod_tip}')";
+        $consulta = "INSERT INTO Usuarios (Nome, senha, email, data_nasc, turma, foto_perf, cod_tip )  
+                      VALUES ('{$Nome}', '{$senha}', '{$email}', '{$dataNasc}', '{$turma}','{$fotoPerf}', '{$cod_tip}')";
         //echo $consulta;
         try {
             $res = $this->conexao->exec($consulta);
@@ -57,13 +57,22 @@ class CrudUsuarios
 
     }
 
-    public function getUsuario($id)
+        public function getUsuario($id)
+    {
+
+        $sql = "SELECT * FROM usuarios where id_usuario = $id";
+        $resultado = $this->conexao->query($sql);
+        $usuario = $resultado->fetch(PDO::FETCH_ASSOC);
+
+        return $usuario;
+    }
+
+    public function getUsuarioPergunta($id)
     {
 
         $sql = "SELECT * FROM usuarios as usuarios, perguntas as perguntas WHERE usuarios.id_usuario = perguntas.id_usuario and perguntas.id_pergunta = $id";
         $resultado = $this->conexao->query($sql);
         $usuario = $resultado->fetch(PDO::FETCH_ASSOC);
-        //$objeto = new Usuario($usuario['Nome'], $usuario['senha'], $usuario['email'], $usuario['num_matricula'], $usuario['data_nasc'], $usuario['turma'], $usuario['RG'],$usuario['foto_perf'], $usuario['login'], $usuario['id_usuario'], $usuario['valido'], $usuario['cod_tip']);
 
         return $usuario;
     }
@@ -103,7 +112,6 @@ class CrudUsuarios
         $resultado = $this->conexao->query($sql);
         if ($resultado->rowCount() > 0) {
             $usuario = $resultado->fetch(PDO::FETCH_ASSOC);
-            //$objeto = new Usuario($usuario['Nome'], $usuario['senha'], $usuario['email'], $usuario['num_matricula'], $usuario['data_nasc'], $usuario['turma'], $usuario['RG'],$usuario['foto_perf'], $usuario['login'], $usuario['id_usuario'], $usuario['valido'], $usuario['cod_tip']);
             return $usuario;
         } else {
             return false;
@@ -122,6 +130,8 @@ $sql = "SELECT foto_perf FROM usuarios as usuarios, perguntas as perguntas WHERE
        echo base64_encode(stripslashes((mysqli_result($exe, 0, 'foto'))));
 
     }
+
+    
 
 };
 

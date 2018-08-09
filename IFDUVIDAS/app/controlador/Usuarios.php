@@ -4,7 +4,6 @@
     { 
         session_start(); 
     }
-
 require_once (realpath(dirname(__FILE__) . '/../modelos/CrudUsuarios.php'));
 require_once (realpath(dirname(__FILE__) .  '/../modelos/CrudPerguntas.php'));
 require_once (realpath(dirname(__FILE__) .  '/../modelos/CrudComentarios.php'));
@@ -44,11 +43,10 @@ switch ($acao) {
             $email = $_POST['email'];
             $data_nasc = $_POST['data_nasc'];
             $turma = $_POST['turma'];
-            $RG = $_POST['RG'];
             $foto_perf = $_POST['foto_perf'];
             $cod_tip = $_POST['cod_tip'];
 
-            $novoUsuario = new Usuario($Nome, $senha, $email, $data_nasc, $turma, $RG, $foto_perf, $cod_tip);
+            $novoUsuario = new Usuario($Nome, $senha, $email, $data_nasc, $turma, $foto_perf, $cod_tip);
 
             $crud = new CrudUsuarios();
             $crud->insertUsuario($novoUsuario);
@@ -71,6 +69,8 @@ switch ($acao) {
                 $_SESSION['Nome'] = $usuario['Nome'];
                 $_SESSION['email'] = $usuario['email'];
                 $_SESSION['cod_tip'] = $usuario['cod_tip'];
+                $_SESSION['turma'] = $usuario['turma'];
+                
             header('location: Usuarios.php');
                            } else {
 
@@ -86,11 +86,31 @@ switch ($acao) {
         break;
 
         case 'paginaDoUsuario':
-        header('location:../visualizacao/paginaUsuario.php');
+
+        $id_usuario = $_GET['id_usuario'];
+
+        $crud1= new CrudUsuarios();
+        $usuario = $crud1->getUsuario($id_usuario);
+        
+        $crud = new CrudPerguntas();
+        $numDePergutas = $crud->getNumPerguntas($id_usuario);
+
+        $perguntas = $crud->getPerguntasPorUsuario($_GET['id_usuario']);
+
+
+        if ($usuario['cod_tip'] == '4') {
         include '../visualizacao/head.php';
-                $_SESSION['id_usuario'] = $usuario->getIdUsuario();
-                $_SESSION['Nome'] = $usuario->getNome();
-                $_SESSION['email'] = $usuario->getEmail();
+        include '../visualizacao/paginaProfessor.php';
+        }elseif ($usuario['cod_tip'] == '5') {
+        include '../visualizacao/head.php';
+        include '../visualizacao/paginaAluno.php';
+        }else{
+            echo "erro";
+        };
+
+        
+        
+                
             break;
 
 
@@ -139,6 +159,11 @@ switch ($acao) {
         case 'busca':
             $busca = $_POST['pesquisa'];
 
+            
+            $crud = new CrudPerguntas();
+            $perguntas = $crud->busca($busca); 
+            
+
             include '../visualizacao/head.php';
             include '../visualizacao/perguntasPorBusca.php';
             include '../visualizacao/footer.php';
@@ -154,12 +179,17 @@ switch ($acao) {
             $crud2 = new CrudUsuarios();
             $usuario = $crud2->getUsuario($id);
 
+            $id_usuario = $usuario['id_usuario'];
+
             $crud3 = new CrudRespostas();
-            $respostas = $crud3->getRespostas();
+            $respostas = $crud3->getRespostas($id);
 
             $crud4 = new CrudComentarios();
             $comentarios = $crud4->getComentarios($id);
             
+            $numDeCurtidas = $crud->getCurtidas($id);
+
+            $novaCurtida = $crud->curtir($id,$id_usuario);
 
 
             include '../visualizacao/head.php';
@@ -230,7 +260,7 @@ switch ($acao) {
             $usuario = $crud2->getUsuario($id);
 
             $crud3 = new CrudRespostas();
-            $respostas = $crud3->getRespostas();
+            $respostas = $crud3->getRespostas($id);
 
             $crud4 = new CrudComentarios();
             $comentarios = $crud4->getComentarios($id);
@@ -244,6 +274,11 @@ switch ($acao) {
 
             $crud = new CrudRespostas();
             $crud->insertResposta($novaResposta);
+
+            if ($novaResposta) {
+            $crud = new CrudPerguntas();
+            $crud->updatePerguntaRespondida($id);
+            };
 
             include '../visualizacao/head.php';
             include '../visualizacao/pergunta.php';

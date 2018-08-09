@@ -14,7 +14,6 @@ class Usuario
     private $num_matricula;
     private $data_nasc;
     private $turma;
-    private $RG;
     private $foto_perf;
     private $id_usuario;
     private $valido;
@@ -22,16 +21,14 @@ class Usuario
 
 
 
-    public function __construct($Nome, $senha, $email, $num_matricula, $data_nasc, $turma, $foto_perf, $cod_tip  )
+    public function __construct($Nome, $senha, $email, $data_nasc, $turma, $foto_perf, $cod_tip  )
     {
 
         $this->Nome = $Nome;
         $this->senha = $senha;
         $this->email = $email;
-        $this->num_matricula = $num_matricula;
         $this->data_nasc = $data_nasc;
         $this->turma = $turma;
-        $this->RG = $RG;
         $this->foto_perf = $foto_perf;
         $this->cod_tip = $cod_tip;
 

@@ -56,7 +56,7 @@
     <?php 
       if (isset($_SESSION['id_usuario'])) {
      ?>   
-      <a class="item" href="../controlador/Usuarios.php?acao=paginaDoUsuario">
+      <a class="item" href="../controlador/Usuarios.php?acao=paginaDoUsuario&id_usuario=<?=$_SESSION['id_usuario']?>">
           <i class="setting icon"></i>
           Perfil
        </a>

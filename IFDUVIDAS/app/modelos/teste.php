@@ -3,8 +3,9 @@
 	include "CrudPerguntas.php";
 	include "CrudRespostas.php";
 	include "CrudComentarios.php";
+	//include "curtida.php";
 
-
+	//getCurtida('47');
 
 	 $hora = "1";
 	 $data = "10";
@@ -13,7 +14,7 @@
 	 $curso = 'informatica';
 	 $materia = 'matematica';
 	 $id_pergunta = "4";
-	 $id_usuario = null;
+	 $id_usuario = "47";
 
 	 $data_resposta= "12";
 	 $texto_resposta = "ola";
@@ -23,21 +24,29 @@
 	 $texto_comentario = "ola";
 	 $id_comentario = null;
 
+	 $Nome = "teste3";
+	 $senha = "123";
+	 $email = "teste@gmail.com";
+	 $num_matricula = "11111";
+	 $data_nasc = null;
+	 $turma = "3info2";
+	 $foto_perf = null;
+	 $cod_tip = "4";
 
 
-	
+	//$novoUsuario = new Usuario($Nome, $senha, $email, $num_matricula, $data_nasc, $turma, $foto_perf, $cod_tip);
 	$teste2 = new Pergunta($hora, $data, $descricao_pergunta, $titulo, $materia, $curso, $id_pergunta);
-	$teste3 = new Resposta($data_resposta, $texto_resposta, $id_resposta);
-	$teste4 = new Comentario($data_comentario, $texto_comentario, $id_comentario);
+	//$teste3 = new Resposta($data_resposta, $texto_resposta, $id_resposta);
+	//$teste4 = new Comentario($data_comentario, $texto_comentario, $id_comentario);
 
 
 
 
 	//$crud = new CrudUsuarios();
-	//$crud -> getFotoUsuario('3');
+	//$crud -> insertUsuario($novoUsuario);
 
 	$crud = new CrudPerguntas();
-	$crud -> insertPergunta($teste2);
+	$crud -> getCurtidas('47');
 
 	//$crud = new CrudRespostas();
 	//$crud -> insertResposta($teste3);
@@ -45,7 +54,7 @@
 	//$crud = new CrudComentarios();
 	//$crud -> insertComentario($teste4);
 
-	echo "MEU";
+	//echo "MEU";
  ?>
 
  
