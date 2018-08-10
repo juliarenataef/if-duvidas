@@ -12,7 +12,7 @@
   <div class="four wide column"></div>
   <div class="eight wide column">
 
-    <form class="ui equal width aligned segment form" method="post" action="../controlador/Usuarios.php?acao=cadastrar">
+    <form class="ui equal width aligned segment form" method="post" action="../controlador/Usuarios.php?acao=cadastrar" enctype='multipart/form-data'>
    <div class="field">
     <label>Nome</label>
     <input type="text" name="nome">

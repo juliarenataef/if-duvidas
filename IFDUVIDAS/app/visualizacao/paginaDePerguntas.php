@@ -14,7 +14,7 @@
 			<div class="ui secondary vertical fluid pointing menu">
 				<h3  align="center">Filtrar por</h3>
 				<a class="active item">
-					Mais curtidas 
+					Mais curtidas
 				</a>
 				<a class="item">
 					Respondidas

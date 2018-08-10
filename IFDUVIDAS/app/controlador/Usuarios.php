@@ -38,20 +38,31 @@ switch ($acao) {
 
             // depois de preencher o formulario
 
+            if(isset($_FILES["foto_perf"])){
             $Nome = $_POST['nome'];
             $senha = $_POST['senha'];
             $email = $_POST['email'];
             $data_nasc = $_POST['data_nasc'];
             $turma = $_POST['turma'];
-            $foto_perf = $_POST['foto_perf'];
             $cod_tip = $_POST['cod_tip'];
 
-            $novoUsuario = new Usuario($Nome, $senha, $email, $data_nasc, $turma, $foto_perf, $cod_tip);
+            $arquivo = $_FILES["foto_perf"];
+            $pasta_dir = "fotos/";
+
+            $arquivo_nome = $pasta_dir . $arquivo["name"];
+            move_uploaded_file($_FILES["foto_perf"]["tmp_name"], $arquivo_nome);
+
+            $novoUsuario = new Usuario($Nome, $senha, $email, $data_nasc, $turma, $cod_tip);
 
             $crud = new CrudUsuarios();
-            $crud->insertUsuario($novoUsuario);
+            $crud->insertUsuario($novoUsuario, $arquivo_nome);
 
-            header('location: Usuarios.php');
+
+
+        };
+            
+            
+            //header('location: Usuarios.php');
         }
         break;
 
@@ -220,10 +231,13 @@ switch ($acao) {
             };
 
             }
+
+            $bytes = $pergunta["foto_perf"];
+            header("Content-type: image/jpeg");
             
             
             include '../visualizacao/head.php';
-            include '../visualizacao/pergunta.php';
+            include '../visualizacao/pagpergunta.php';
             include '../visualizacao/footer.php';
 
             break;

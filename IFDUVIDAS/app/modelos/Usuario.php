@@ -21,7 +21,7 @@ class Usuario
 
 
 
-    public function __construct($Nome, $senha, $email, $data_nasc, $turma, $foto_perf, $cod_tip  )
+    public function __construct($Nome, $senha, $email, $data_nasc, $turma,  $cod_tip  )
     {
 
         $this->Nome = $Nome;
@@ -29,7 +29,6 @@ class Usuario
         $this->email = $email;
         $this->data_nasc = $data_nasc;
         $this->turma = $turma;
-        $this->foto_perf = $foto_perf;
         $this->cod_tip = $cod_tip;
 
     }

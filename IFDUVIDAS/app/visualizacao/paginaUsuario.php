@@ -21,7 +21,8 @@
 
 					<div id="frente">
 			<div>
-				<img id="imagem_usuario" src="http://www.zastavki.com/pictures/640x480/2015/Girls_Smiling_beautiful_girl__photo_George_Chernyad_ev_111193_29.jpg">
+
+				<img src='<?=$usuario['foto_perf']?>'>
 			</div>
 			<div class="four wide column" id="sobre_usuario" >
 					<h2> <?=$usuario['Nome']?> </h2>

@@ -33,20 +33,18 @@ class CrudUsuarios
         return $listaUsuarios;
     }
 
-    public function insertUsuario(Usuario $usuario)
+    public function insertUsuario($usuario, $arquivo_nome)
     {
         $Nome = $usuario->getNome();
         $senha = $usuario->getSenha();
         $email = $usuario->getEmail();
-        //$numMatricula = $usuario->getNumMatricula();
         $dataNasc = $usuario->getDataNasc();
         $turma = $usuario->getTurma();
-        $fotoPerf = $usuario->getFotoPerf();
         $cod_tip = $usuario->getCodTip();
 
 
-        $consulta = "INSERT INTO Usuarios (Nome, senha, email, data_nasc, turma, foto_perf, cod_tip )  
-                      VALUES ('{$Nome}', '{$senha}', '{$email}', '{$dataNasc}', '{$turma}','{$fotoPerf}', '{$cod_tip}')";
+        $consulta = "INSERT INTO usuarios (Nome, senha, email, data_nasc, turma, foto_perf, cod_tip )  
+                      VALUES ('{$Nome}', '{$senha}', '{$email}', '{$dataNasc}', '{$turma}','$arquivo_nome', '{$cod_tip}')";
         //echo $consulta;
         try {
             $res = $this->conexao->exec($consulta);
@@ -56,6 +54,8 @@ class CrudUsuarios
         }
 
     }
+
+
 
         public function getUsuario($id)
     {

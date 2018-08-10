@@ -6,7 +6,7 @@ class BDConection
     const HOST = "localhost";
     const NOMEBANCO = "ifduvidas";
     const USUARIO = 'root';
-    const SENHA = null;
+    const SENHA = 'root';
     public static $conexao = null;
 
     public static function getConexao()
