@@ -42,7 +42,7 @@ class crudRespostas
 
     }
 
-    public function getRespostasProf($id_usuario)
+    public function getPerguntaRespondidasPorProf($id_usuario)
     {
         $sql = "SELECT * from perguntas as p, prof_resposta as r where p.id_pergunta=r.id_pergunta and r.id_usuario = $id_usuario";
         $resultado = $this->conexao->query($sql);

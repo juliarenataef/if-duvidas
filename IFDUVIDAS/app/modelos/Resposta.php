@@ -9,10 +9,11 @@
 		private $id_usuario; 
 
 		
-		public function __construct($data_resposta, $texto_resposta, $id_pergunta)
+		public function __construct($data_resposta, $texto_resposta, $id_usuario, $id_pergunta)
 		{
 			$this->data_resposta = $data_resposta;
 			$this->texto_resposta = $texto_resposta;
+			$this->id_usuario = $id_usuario;
 			$this->id_pergunta = $id_pergunta;
 		}
 

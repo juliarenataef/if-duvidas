@@ -89,18 +89,26 @@ switch ($acao) {
     case 'paginaDoUsuario':
 
         $id_usuario = $_GET['id_usuario'];
-        $cod_tip = $_GET['cod_tip'];
+
+        if (isset($_GET['cod_tip'])) {
+            $cod_tip = $_GET['cod_tip'];
+        }elseif ($_GET['id_usuario'] = $_SESSION['id_usuario']) {
+            $cod_tip = $_SESSION['cod_tip'];
+        }else{
+            echo "erro";
+        }
+         
 
         $crud1= new CrudUsuarios();
         $usuario = $crud1->getUsuario($id_usuario);
         
         $crud = new CrudPerguntas();
-        $numDePergutas = $crud->getNumPerguntas($id_usuario);
+        $numDePergutas = $crud->getNumPerguntasFeitas($id_usuario);
 
-        $perguntas = $crud->getPerguntasPorUsuario($_GET['id_usuario']);
+        $perguntas = $crud->getPerguntasPorUsuario($id_usuario);
 
         $crud2 = new CrudRespostas();
-        $respostas = $crud2->getRespostasProf($id_usuario);
+        $respostas = $crud2->getPerguntaRespondidasPorProf($id_usuario);
 
         include '../visualizacao/head.php';
         include '../visualizacao/paginaUsuario.php';        
@@ -166,13 +174,9 @@ switch ($acao) {
 
         case 'pergunta':
             $id_pergunta = $_GET['id_pergunta'];
-            $id_usuario = $_SESSION['id_usuario'];
-
+            
             $crud = new CrudPerguntas();
             $pergunta = $crud->getPergunta($id_pergunta);
-
-            $crud2 = new CrudUsuarios();
-            $usuario = $crud2->getUsuario($id_usuario);
 
             $crud3 = new CrudRespostas();
             $respostas = $crud3->getRespostas($id_pergunta);
@@ -182,11 +186,42 @@ switch ($acao) {
             
             $numDeCurtidas = $crud->getCurtidas($id_pergunta);
 
-            if ($id_usuario != '0') {
+            if (isset($_SESSION['id_usuario']) ) {
+                $id_usuario = $_SESSION['id_usuario'];
                 $novaCurtida = $crud->curtir($id_pergunta,$id_usuario);
-            };
-            
+            }; 
 
+            $data = gmdate("Y-m-d");
+
+            if (isset($_POST['texto_comentario'])) {
+                $texto_comentario = $_POST['texto_comentario'];
+                $novoComentario = new Comentario($data, $texto_comentario,$id_usuario,$id_pergunta);
+
+                $crud5 = new CrudComentarios();
+                $crud5->insertComentario($novoComentario);
+                header("Refresh: 0");
+                break;
+            };
+
+            if (isset($_POST['texto_resposta'])) {
+                $texto_resposta = $_POST['texto_resposta'];
+
+                $novaResposta = new Resposta($data, $texto_resposta,$id_usuario,$id_pergunta);
+
+
+                $crud6 = new crudRespostas();
+                $crud6->insertResposta($novaResposta);
+
+                if ($novaResposta) {
+                $crud = new CrudPerguntas();
+                $crud->updatePerguntaRespondida($id_pergunta);
+                header("Refresh: 0");
+                break;
+            };
+
+            }
+            
+            
             include '../visualizacao/head.php';
             include '../visualizacao/pergunta.php';
             include '../visualizacao/footer.php';
@@ -211,74 +246,6 @@ switch ($acao) {
             
             break;
 
-        case 'comentario':
-
-            $id = $_GET['id_pergunta'];
-
-            $crud = new CrudPerguntas();
-            $pergunta = $crud->getPergunta($id);
-
-            $crud2 = new CrudUsuarios();
-            $usuario = $crud2->getUsuario($id);
-
-            $crud3 = new CrudRespostas();
-            $respostas = $crud3->getRespostas($id);
-
-            $crud4 = new CrudComentarios();
-            $comentarios = $crud4->getComentarios($id);
-
-            
-            $id_usuario = $_SESSION['id_usuario'];
-            $data = gmdate("Y-m-d");
-            $texto_comentario = $_POST['texto_comentario'];
-            $id_pergunta = $id;
-
-            $novoComentario = new Comentario($data, $texto_comentario,$id_usuario,$id_pergunta);
-
-            $crud5 = new CrudComentarios();
-            $crud5->insertComentario($novoComentario);
-
-
-            include '../visualizacao/head.php';
-            include '../visualizacao/pergunta.php';
-            include '../visualizacao/footer.php';
-        break;
-
-            case 'resposta':
-
-            $id = $_GET['id_pergunta'];
-
-            $crud = new CrudPerguntas();
-            $pergunta = $crud->getPergunta($id);
-
-            $crud2 = new CrudUsuarios();
-            $usuario = $crud2->getUsuario($id);
-
-            $crud3 = new CrudRespostas();
-            $respostas = $crud3->getRespostas($id);
-
-            $crud4 = new CrudComentarios();
-            $comentarios = $crud4->getComentarios($id);
-
-            $id_usuario = $_SESSION['id_usuario'];
-            $data = gmdate("Y-m-d");
-            $texto_resposta = $_POST['texto_resposta'];
-            $id_pergunta = $id;
-
-            $novaResposta = new Resposta($data, $texto_resposta,$id_usuario,$id_pergunta);
-
-            $crud = new CrudRespostas();
-            $crud->insertResposta($novaResposta);
-
-            if ($novaResposta) {
-            $crud = new CrudPerguntas();
-            $crud->updatePerguntaRespondida($id);
-            };
-
-            include '../visualizacao/head.php';
-            include '../visualizacao/pergunta.php';
-            include '../visualizacao/footer.php';
-        break;
         
     };
             

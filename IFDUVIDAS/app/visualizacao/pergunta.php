@@ -21,7 +21,7 @@ function recarregarCurtida() {
 
     <img src="ggera.php?id=<?=$id?>">
 
-    <h4><?=$usuario['Nome']?></h4>
+    <h4><?=$pergunta['Nome']?></h4>
 	</div>
 		<div class="eleven wide column" id="divPergunta">
 			<h3> <?=$pergunta['titulo']?> </h3>
@@ -50,10 +50,7 @@ function recarregarCurtida() {
     <a class="avatar">
     </a>
     <div class="content">
-
     <a href="../controlador/Usuarios.php?acao=paginaDoUsuario&id_usuario=<?=$comentario['id_usuario']?>&cod_tip=<?=$comentario['cod_tip']?>"  class="author"><?=$comentario['Nome']?></a></a>
-      
-
       
       <div class="metadata">
         <span class="date"><?=$comentario['data_comentario']?></span>
@@ -67,17 +64,16 @@ function recarregarCurtida() {
   <?php } ?>
       <?php 
       if (isset($_SESSION['id_usuario']) and $_SESSION['cod_tip'] == 5) { ?>
-        <form class="ui reply form" method="post" action="../controlador/Usuarios.php?acao=comentario&id_pergunta=<?=$pergunta['id_pergunta']?>">
+        <form class="ui reply form" method="post" action="../controlador/Usuarios.php?acao=pergunta&id_pergunta=<?=$pergunta['id_pergunta']?>&cod_tip=<?=$pergunta['cod_tip']?>">
       <input type="text" name="texto_comentario">
       <button class="ui button"  type="submit" name="enviar" >Comentar!</button> 
   </form>
-    </div>
     
       <?php 
       }; ?>
+</div>
+</div>
 
-</div>
-</div>
 
     
 
@@ -106,28 +102,21 @@ function recarregarCurtida() {
       </div>
     </div>
   </div>
-
       <?php } ?>
 
 
-            <?php 
-      if (isset($_SESSION['id_usuario']) and $_SESSION['cod_tip'] == 4) { ?>
-  <form class="ui reply form" method="post" action="../controlador/Usuarios.php?acao=resposta&id_pergunta=<?=$pergunta['id_pergunta']?>">
+            <?php if (isset($_SESSION['id_usuario']) and $_SESSION['cod_tip'] == 4) { ?>
+  <form class="ui reply form" method="post" action="../controlador/Usuarios.php?acao=pergunta&id_pergunta=<?=$pergunta['id_pergunta']?>&cod_tip=<?=$pergunta['cod_tip']?>">
       <input type="text" name="texto_resposta">
       <button class="ui button" type="submit" name="enviar" >Responder!</button> 
   </form>
-  </div>
-  </div>
- </div>
       <?php 
       }; ?>
   
 </div>
    
-
-    <div class="one wide column"></div>
    </div>
-
+<div class="one wide column"></div>
 
 
 	

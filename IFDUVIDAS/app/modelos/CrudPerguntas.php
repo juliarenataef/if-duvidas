@@ -51,7 +51,7 @@ class CrudPerguntas
     public function getPergunta($id_pergunta)
     {
 
-        $sql = "SELECT * FROM perguntas WHERE id_pergunta = $id_pergunta";
+        $sql = "SELECT * FROM perguntas as p, usuarios as u WHERE p.id_usuario=u.id_usuario and p.id_pergunta = $id_pergunta";
         $resultado = $this->conexao->query($sql);
         $pergunta = $resultado->fetch(PDO::FETCH_ASSOC);
 
@@ -112,7 +112,16 @@ class CrudPerguntas
         $sql = "SELECT * from perguntas as p, aluno_comenta as c where c.id_pergunta = p.id_pergunta ORDER by COUNT(c.id_comentario)";
     }
 
-    public function getNumPerguntas($id_usuario){
+    public function getNumPerguntasFeitas($id_usuario){
+        $sql = "select COUNT(p.id_pergunta) as numeroDePerguntas from perguntas as p, usuarios as u where u.id_usuario=p.id_usuario and u.id_usuario=$id_usuario";
+        $resultado = $this->conexao->query($sql);
+        $numeroDePerguntas= $resultado->fetch(PDO::FETCH_ASSOC);
+
+        return $numeroDePerguntas;
+
+    }
+
+    public function getNumPerguntasRespondidas($id_usuario){
         $sql = "select COUNT(p.id_pergunta) as numeroDePerguntas from perguntas as p, usuarios as u where u.id_usuario=p.id_usuario and u.id_usuario=$id_usuario";
         $resultado = $this->conexao->query($sql);
         $numeroDePerguntas= $resultado->fetch(PDO::FETCH_ASSOC);

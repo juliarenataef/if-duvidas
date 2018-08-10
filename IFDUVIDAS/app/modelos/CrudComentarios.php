@@ -45,16 +45,7 @@ class crudComentarios
 
     }
 
-        public function getComentario($id_comentario)
-    {
 
-        $sql = "SELECT * FROM aluno_comenta WHERE id_comentario = $id_comentario";
-        $resultado = $this->conexao->query($sql);
-        $comentario = $resultado->fetch(PDO::FETCH_ASSOC);
-		$objeto = new Comentario($comentario['data_comentario'], $comentario['texto_comentario'], $comentario['id_comentario'], $comentario['id_pergunta'], $comentario['id_usuario']);
-
-        return $objeto;
-    }
 
     public function updateComentario(comentario $comentario)
     {
