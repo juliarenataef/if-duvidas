@@ -33,7 +33,7 @@
 					<?php }; ?>
 
 					<?php if ($cod_tip == '4'){ ?>
-						h3>Perguntas respondidas:FAZER</h3>
+						<h3>Perguntas respondidas:FAZER</h3>
 					<?php }; ?>
 
 				</div>

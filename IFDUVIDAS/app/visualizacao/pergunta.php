@@ -18,8 +18,8 @@ function recarregarCurtida() {
 <div class="ui sixteen wide divided grid">
 		<div class="one wide column"></div>
 		<div class="three wide column" id="divImagem">
-
-    <img src="ggera.php?id=<?=$id?>">
+      <img src="<?=$usuario['foto_perf']?>">
+    
 
     <h4><?=$pergunta['Nome']?></h4>
 	</div>

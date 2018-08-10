@@ -62,7 +62,7 @@ switch ($acao) {
         };
             
             
-            //header('location: Usuarios.php');
+            header('location: Usuarios.php');
         }
         break;
 
@@ -232,12 +232,11 @@ switch ($acao) {
 
             }
 
-            $bytes = $pergunta["foto_perf"];
-            header("Content-type: image/jpeg");
+            
             
             
             include '../visualizacao/head.php';
-            include '../visualizacao/pagpergunta.php';
+            include '../visualizacao/pergunta.php';
             include '../visualizacao/footer.php';
 
             break;
