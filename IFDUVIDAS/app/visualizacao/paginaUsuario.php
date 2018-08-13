@@ -80,7 +80,7 @@
 		
 	<div class="row">
           <div class="sixteen wide column">
-          <a href="../controlador/Usuarios.php?acao=pergunta&id_pergunta=<?=$pergunta['id_pergunta']?>" style="color: inherit; ">
+          <a href="../controlador/Usuarios.php?acao=pergunta&id_pergunta=<?=$resposta['id_pergunta']?>" style="color: inherit; ">
        		 <h4 class="ui header"><?=$resposta['titulo']?></h4>
           	<?=$resposta['descricao_pergunta']?>
           	</a>

@@ -44,7 +44,7 @@ class crudRespostas
 
     public function getPerguntaRespondidasPorProf($id_usuario)
     {
-        $sql = "SELECT * from perguntas as p, prof_resposta as r where p.id_pergunta=r.id_pergunta and r.id_usuario = $id_usuario";
+        $sql = "SELECT DISTINCT(p.titulo), p.id_pergunta, p.descricao_pergunta, p.id_usuario, r.id_usuario from perguntas as p, prof_resposta as r where p.id_pergunta=r.id_pergunta and r.id_usuario = $id_usuario";
         $resultado = $this->conexao->query($sql);
 
         $respostas = $resultado->fetchAll(PDO::FETCH_ASSOC);

@@ -1,11 +1,8 @@
 body {
     min-height: 100%;
+    font-family: Arial, Helvetica, sans-serif;
 }
 
-img{
-	height: 200px;
-	width: 200px;
-}
 
 #menu{
 	background-color: #6ad97d;
@@ -28,10 +25,16 @@ img{
     position: fixed;
 }
 
-#grid_cadastro{
-	padding: 10px;
+/*index.php*/
 
+
+#imagem_index{
+	height: 450px;
+	width: 100%;
+	margin: 10px;
 }
+
+
 #form_cadastro a {
  color: inherit; 
 } 
@@ -68,3 +71,39 @@ img{
 	height: 250px;
 	width:250px;
 }
+
+
+/* paginaUsuario.php*/
+#frente{
+	height: 600px;
+	width: 350px;
+	position: absolute;
+	z-index: 1;
+	margin: 75px;
+	background-color: gray;
+	box-shadow: -6px -6px 28px -7px black;
+
+}
+
+#imagem_usuario{
+	height: 300px;
+	width: 100%;
+
+}
+
+#sobre_usuario{
+	text-align: center;
+}
+
+#tras{
+	height: 300px;
+    width: 100%;   
+}
+
+#imagem_tras{
+	height: 100%;
+	width: 100%;	
+}
+
+#conteudo{
+	margin-left: 425px;

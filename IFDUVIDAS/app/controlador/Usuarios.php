@@ -155,20 +155,6 @@ switch ($acao) {
 
 
 
-        case 'peguntasPorMateria':
-
-            include '../visualizacao/head.php';
-            include '../visualizacao/perguntasPorMateria.php';
-            include '../visualizacao/footer.php';
-            break;
-
-        case 'peguntasPorCurso':
-
-            include '../visualizacao/head.php';
-            include '../visualizacao/perguntasPorCurso.php';
-            include '../visualizacao/footer.php';
-            break;
-
         case 'busca':
             $busca = $_POST['pesquisa'];
 
@@ -232,14 +218,12 @@ switch ($acao) {
 
             }
 
-            
-            
-            
             include '../visualizacao/head.php';
             include '../visualizacao/pergunta.php';
             include '../visualizacao/footer.php';
 
             break;
+            
 
         case 'perguntasRespondidas':
             $crud = new CrudPerguntas();
@@ -252,11 +236,29 @@ switch ($acao) {
             break;
 
         case 'perguntasMaisCurtidas':
-            
+            $crud = new CrudPerguntas();
+            $perguntas = $crud->perguntasMaisCurtidas();
+
             break;
 
         case 'perguntasMaisComentadas':
-            
+            $crud = new CrudPerguntas();
+            $perguntas = $crud->perguntasMaisComentadas();
+            break;
+
+
+        case 'peguntasPorMateria':
+
+            include '../visualizacao/head.php';
+            include '../visualizacao/perguntasPorMateria.php';
+            include '../visualizacao/footer.php';
+            break;
+
+        case 'peguntasPorCurso':
+
+            include '../visualizacao/head.php';
+            include '../visualizacao/perguntasPorCurso.php';
+            include '../visualizacao/footer.php';
             break;
 
         

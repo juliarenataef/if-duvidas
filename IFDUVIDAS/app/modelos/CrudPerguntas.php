@@ -109,7 +109,21 @@ class CrudPerguntas
 
     public function perguntasMaisComentadas()
     {
-        $sql = "SELECT * from perguntas as p, aluno_comenta as c where c.id_pergunta = p.id_pergunta ORDER by COUNT(c.id_comentario)";
+        $sql = "SELECT p.id_pergunta,p.descricao_pergunta, p.titulo, p.status from perguntas as p, aluno_comenta as c where c.id_pergunta = p.id_pergunta GROUP by c.id_pergunta ORDER by COUNT(c.id_comentario)";
+        $resultado = $this->conexao->query($sql);
+
+        $perguntas = $resultado->fetchAll(PDO::FETCH_ASSOC);
+        return $perguntas;
+    }
+
+
+    public function perguntasMaisCurtidas()
+    {
+        $sql = "SELECT p.id_pergunta,p.descricao_pergunta, p.titulo from perguntas as p, curtida as c where p.id_pergunta = c.id_pergunta GROUP by c.id_pergunta ORDER by COUNT(p.curtidas)";
+        $resultado = $this->conexao->query($sql);
+
+        $perguntas = $resultado->fetchAll(PDO::FETCH_ASSOC);
+        return $perguntas;
     }
 
     public function getNumPerguntasFeitas($id_usuario){

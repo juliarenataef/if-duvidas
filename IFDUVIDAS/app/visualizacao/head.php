@@ -7,5 +7,5 @@
 <script type="text/javascript" src=../visualizacao/semantic/components/dropdown.js></script>
 <link rel="stylesheet" type="text/css" href=../visualizacao/semantic/components/dropdown.css>
 <script type="text/javascript" src=../visualizacao/script.js></script>
-<link rel="stylesheet" type="text/css" href=../visualizacao/estilo.css>
+<link rel="stylesheet" type="text/css" href=../visualizacao/css.css>
 
